@@ -1,0 +1,67 @@
+<html><head>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div class="header" align="center"><h2 align="left">REQUEST TO BE CLEARED</h2> <a href="clearance.php" style="padding:10px; text-decoration:none;">Apply Clearance</a><a href="approve.php">View Approvals</a><a href="<?php echo $logoutAction ?>" style="float:right; margin-right:30px; text-decoration:none;">Logout</a></div>
+<center><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+<main>
+<section class="panel">
+<p>&nbsp;</p>
+
+<form method="POST" name="form1" action="<?php echo $editFormAction; ?>">
+  <div class="form-group">
+  <label for="Regno">Regno:</label>
+      <input type="text" name="regno" value="" size="32" autofocus="autofocus" required  name="regno">
+   </div>
+        <div class="form-group">
+		<label for="programme">Programmeid:</label>
+     <select name="programmeid">
+        <?php 
+do {  
+?>
+        <option value="<?php echo $row_prog['programmeid']?>" <?php if (!(strcmp($row_prog['programmeid'], strtoupper($row_prog['programmeid'])))) {echo "SELECTED";} ?><?php echo $row_prog['programmeid']?></option>
+        <?php
+} while ($row_prog = mysql_fetch_assoc($prog));
+?>
+      </select>
+     </div>
+      <div class="form-group">
+      <label for="departmentid">Departmentid:</label>
+      <select name="departmentid">
+        <?php 
+do {  
+?>
+        <option value="<?php echo $row_dep['departmentid']?>" <?php if (!(strcmp($row_dep['departmentid'], strtoupper($row_dep['departmentid'])))) {echo "SELECTED";} ?><?php echo $row_dep['departmentid']?></option>
+        <?php
+} while ($row_dep = mysql_fetch_assoc($dep));
+?>
+      </select>
+     </div>
+      <div class="form-group">
+    <label for="facultyid">Facultyid:</label>
+     <select name="facultyid">
+        <?php 
+do {  
+?>
+        <option value="<?php echo $row_fac['facultyid']?>" <?php if (!(strcmp($row_fac['facultyid'], strtoupper($row_fac['facultyid'])))) {echo "SELECTED";} ?><?php echo $row_fac['facultyid']?</option>
+        <?php
+} while ($row_fac = mysql_fetch_assoc($fac));
+?>
+      </select>
+      </div>
+      <div class="form-group">
+      <input type="submit" value="submit">
+    </div>
+  <input type="hidden" name="MM_insert" value="form1">
+</form>
+<p>&nbsp;</p>
+</section>
+</main>
+<div class="footer">&copy;Dishon 2018</div>
+</body>
+</html>
+<?php
+mysql_free_result($fac);
+mysql_free_result($dep);
+mysql_free_result($prog);
+?>
